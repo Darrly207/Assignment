@@ -1,6 +1,6 @@
 const Quiz = require("../models/Quiz"); // Ensure the correct path
 const Question = require("../models/Question"); // Ensure the correct path
-
+const QuizService = require("../services/QuizService");
 const createQuiz = async (req, res) => {
   const { title, description, questions } = req.body;
 
