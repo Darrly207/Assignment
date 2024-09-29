@@ -4,7 +4,6 @@ const Question = require("../models/Question"); // Ensure the correct path
 const createQuiz = async (req, res) => {
   const { title, description, questions } = req.body;
 
-  // Validate input
   if (!title || !description || !Array.isArray(questions)) {
     return res.status(400).json({
       status: "Error",
