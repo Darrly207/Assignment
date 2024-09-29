@@ -7,6 +7,7 @@ mongoose.set("strictQuery", false);
 const connectDB = async () => {
   try {
     const uri = process.env.MONGODB_URI;
+    console.log("DB_URI:", process.env.MONGODB_URI);
     if (!uri) {
       throw new Error(
         "MONGODB_URI is not defined in the environment variables"
