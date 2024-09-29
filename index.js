@@ -1,29 +1,27 @@
 const express = require("express");
-const dotevn = require("dotenv");
-const { default: mongoose } = require("mongoose");
-const routes = require("./routers/index");
 const cors = require("cors");
-dotevn.config();
+const connectDB = require("./config/database");
+const routes = require("./routers/index");
 
 const app = express();
-const port = process.env.PORT || 3001;
-app.use(express.json());
-app.use(cors({}));
+const PORT = process.env.PORT || 3001;
 
+app.use(express.json());
+
+const corsOptions = {
+  origin: "*", // Allow all origins
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
+
+// Connect to MongoDB
+connectDB();
+
+// Define routes
 routes(app);
 
-mongoose
-  .connect(`${process.env.linkDB}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("db connect success");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-app.listen(port, () => {
-  console.log("server is running on port", port);
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
