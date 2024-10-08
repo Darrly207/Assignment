@@ -95,8 +95,8 @@ export const getCapitalQuestions = async (req: Request, res: Response) => {
 			.select('-__v')
 			.exec();
 
-		if (!quiz) {
-			return res.status(404).json({ message: 'Quiz not found' });
+		if (!quiz || !quiz.questions || quiz.questions.length === 0) {
+			return res.status(404).json({ message: 'No questions found with keyword capital' });
 		}
 
 		return res.status(200).json(quiz);

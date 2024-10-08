@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.get('/allQuestion', allQuestions);
+router.get('/', allQuestions);
 
 router.get('/display', displayQuestion);
 

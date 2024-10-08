@@ -34,19 +34,29 @@
 			const deleteButtons = document.querySelectorAll('.btn-danger');
 			deleteButtons.forEach((button) => {
 				button.addEventListener('click', async (e) => {
-					const questionId = e.target.parentElement
-						.querySelector('a')
-						.href.split('/')
-						.pop();
+					// Extract the questionId from the query parameter
+					const href = e.target.parentElement.querySelector('a').href;
+					const urlParams = new URLSearchParams(new URL(href).search);
+					const questionId = urlParams.get('id'); // Correct way to get the questionId
+		
+					if (!questionId) {
+						alert('Question ID not found');
+						return;
+					}
+		
 					const response = await fetch(`/api/questions/${questionId}`, {
 						method: 'DELETE',
 					});
+		
 					if (response.ok) {
 						window.location.reload();
+					} else {
+						alert('Failed to delete question');
 					}
 				});
 			});
 		</script>
+		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

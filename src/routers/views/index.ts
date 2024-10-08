@@ -1,8 +1,8 @@
-import quiz from "../views/quiz.route";
-import question from "../views/question.route";
 import { Application } from "express";
+import quiz from"./quiz.route";
+import question from "./question.route"
 
-const routes = (app: Application): void => {
+const routes = (app: Application):void => {
   app.use('/questions', question);
   app.use('/quizzes', quiz);
 };

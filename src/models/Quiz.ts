@@ -10,7 +10,8 @@ export interface IQuiz {
 const QuizSchema = new mongoose.Schema({
 	title: { type: Schema.Types.String, required: true },
 	description: { type: Schema.Types.String, required: true },
-	questions: { type: [Schema.Types.ObjectId], required: true, ref: Question },
-});
+	questions: [{ type: Schema.Types.ObjectId, ref: Question, required: true }]
+  });
+  
 
 export const Quiz = mongoose.model('Quiz', QuizSchema);

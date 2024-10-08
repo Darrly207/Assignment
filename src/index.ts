@@ -4,7 +4,7 @@ import cors, { CorsOptions } from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/database';
 import apiRoutes from './routers/api/index';
-import viewRoutes from './routers/views/index'
+import viewRoutes from './routers/views/index';
 dotenv.config(); // Load environment variables
 
 const app = express();
